@@ -6,7 +6,7 @@
 		<logo src="{{ station.logo_url }}"/>
 		<basecolor>#FFFFFF</basecolor>
 		<city>{{ station.city }}</city>
-		<description>{{ station.city }}</description>
+		<description>{{ station.description }}</description>
 {% for studio in station.studio_set.all %}
 		<studio>
 			<street>{{ studio.street }}</street>
