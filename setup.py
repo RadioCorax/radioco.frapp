@@ -5,7 +5,7 @@ version = '0.1'
 
 requires = [
 #    'django-radio',
-    'Django<=1.8',
+    'Django<1.9',
     'django-solo-grappelli',
 ]
 
