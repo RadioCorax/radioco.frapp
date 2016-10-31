@@ -13,6 +13,10 @@ class StudioModelTest(TestCase):
             street="Somestreet",
             number=123,
             zip=99999,
+            email="me@example.com",
+            phone="+49 234 123123123",
+            location_latitude=-33.8688197,
+            location_longitude=151.20929550000005,
             open_from=datetime.time(10, 0, 0),
             open_to=datetime.time(20, 0, 0))
 
@@ -28,6 +32,16 @@ class StudioModelTest(TestCase):
     def test_zip(self):
         self.assertEqual(99999, self.studio.zip)
 
+    def test_email(self):
+        self.assertEqual("me@example.com", self.studio.email)
+
+    def test_phone(self):
+        self.assertEqual("+49 234 123123123", self.studio.phone)
+
+    def test_location(self):
+        self.assertEqual(
+            "-33.8688197 151.2092955", self.studio.location)
+
     def test_open_from(self):
         self.assertEqual(datetime.time(10, 0, 0), self.studio.open_from)
 
@@ -36,3 +50,7 @@ class StudioModelTest(TestCase):
 
     def test_station(self):
         self.assertEqual(self.station, self.studio.station)
+
+    def test_unicode(self):
+        self.assertEqual(
+            u'Halle (Saale) - Somestreet 123', unicode(self.studio))
