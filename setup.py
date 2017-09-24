@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.1'
+version = '0.2'
 
 requires = [
 #    'django-radio',
-    'Django<1.9',
+    'Django',
     'django-solo-grappelli',
 ]
 
