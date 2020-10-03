@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.2'
+version = '0.3'
 
 requires = [
-#    'django-radio',
-    'Django',
-    'django-solo-grappelli',
+    'Django<3',
+    'django-solo'
 ]
 
 setup(name='radioco.frapp',
@@ -25,7 +24,6 @@ XXX long description""",
       include_package_data=True,
       zip_safe=False,
       install_requires=requires,
-#      dependency_links=['http://github.com/stefan-walluhn/django-radio/tarball/production#egg=django-radio-3.0'],
       tests_require=['django-nose'],
       test_suite='radioco.frapp.test.runner.runtests',
       entry_points="""

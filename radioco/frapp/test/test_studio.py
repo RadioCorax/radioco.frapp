@@ -1,4 +1,6 @@
 import datetime
+
+from decimal import Decimal
 from django.test import TestCase
 from radioco.frapp.models import Station, Studio
 
@@ -15,10 +17,11 @@ class StudioModelTest(TestCase):
             zip=99999,
             email="me@example.com",
             phone="+49 234 123123123",
-            location_latitude=-33.8688197,
-            location_longitude=151.20929550000005,
+            location_latitude=Decimal('-33.8688197'),
+            location_longitude=Decimal('151.2092955'),
             open_from=datetime.time(10, 0, 0),
             open_to=datetime.time(20, 0, 0))
+        self.studio.full_clean()
 
     def test_street(self):
         self.assertEqual("Somestreet", self.studio.street)
@@ -40,7 +43,8 @@ class StudioModelTest(TestCase):
 
     def test_location(self):
         self.assertEqual(
-            "-33.8688197 151.2092955", self.studio.location)
+            [-33.8688197, 151.2092955],
+            list(float(c) for c in self.studio.location))
 
     def test_open_from(self):
         self.assertEqual(datetime.time(10, 0, 0), self.studio.open_from)
@@ -51,6 +55,5 @@ class StudioModelTest(TestCase):
     def test_station(self):
         self.assertEqual(self.station, self.studio.station)
 
-    def test_unicode(self):
-        self.assertEqual(
-            u'Halle (Saale) - Somestreet 123', unicode(self.studio))
+    def test_instance_str(self):
+        self.assertEqual('Halle (Saale) - Somestreet 123', str(self.studio))

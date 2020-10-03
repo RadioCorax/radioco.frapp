@@ -9,6 +9,13 @@ DATABASES = {
     }
 }
 
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+    },
+]
+
 ROOT_URLCONF = 'radioco.frapp.test.urls'
 
 SECRET_KEY = 'xxx'

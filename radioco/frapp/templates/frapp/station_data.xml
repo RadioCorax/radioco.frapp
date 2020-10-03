@@ -15,7 +15,7 @@
 			<zip>{{ studio.zip }}</zip>
 			<studio-location>
 				<gml:Point>
-					<gml:pos>{{ studio.location }}</gml:pos>
+					<gml:pos>{{ studio.location|join:" " }}</gml:pos>
 				</gml:Point>
 			</studio-location>
 			<phone type="office">{{ studio.phone }}</phone>
@@ -39,12 +39,12 @@
 			</transmit-times>
 			<transmitter-location>
 				<gml:Point>
-					<gml:pos>{{ transmitter.location }}</gml:pos>
+					<gml:pos>{{ transmitter.location|join:" " }}</gml:pos>
 				</gml:Point>
 			</transmitter-location>
 			<receptionarea>
 				<gml:CircleByCenterPoint numArc="1">
-					<gml:pos>{{ transmitter.location }}</gml:pos>
+					<gml:pos>{{ transmitter.location|join:" " }}</gml:pos>
 					<gml:radius uom="km">{{ transmitter.transmission_range }}</gml:radius>
 				</gml:CircleByCenterPoint>
 			</receptionarea>

@@ -1,4 +1,6 @@
 import datetime
+
+from decimal import Decimal
 from django.test import TestCase
 from radioco.frapp.models import (
     CableTransmitter, StreamTransmitter, UKWTransmitter, Station)
@@ -39,19 +41,20 @@ class UKWTransmitterModelTest(TestCase):
         self.station = Station.objects.create()
         self.ukw_transmitter = UKWTransmitter.objects.create(
             station=self.station,
-            frequency=95.9,
+            frequency=Decimal('95.9'),
             city="Petersberg",
             operator="Funkturm",
             rds_id="frn",
-            location_latitude=-33.8688197,
-            location_longitude=151.20929550000005,
+            location_latitude=Decimal('-33.8688197'),
+            location_longitude=Decimal('151.2092955'),
             transmission_power=1500,
             transmission_range=50,
             transmission_from=datetime.time(10, 0, 0),
             transmission_to=datetime.time(20, 0, 0))
+        self.ukw_transmitter.clean_fields()
 
     def test_frequency(self):
-        self.assertEqual(95.9, self.ukw_transmitter.frequency)
+        self.assertEqual(95.9, float(self.ukw_transmitter.frequency))
 
     def test_city(self):
         self.assertEqual("Petersberg", self.ukw_transmitter.city)
@@ -63,8 +66,10 @@ class UKWTransmitterModelTest(TestCase):
         self.assertEqual("frn", self.ukw_transmitter.rds_id)
 
     def test_location(self):
-        self.assertEqual(
-            "-33.8688197 151.2092955", self.ukw_transmitter.location)
+        print(self.ukw_transmitter.location[1])
+        self.assertListEqual(
+            [-33.8688197, 151.2092955],
+            list(float(c) for c in self.ukw_transmitter.location))
 
     def test_transmission_power(self):
         self.assertEqual(1500, self.ukw_transmitter.transmission_power)
@@ -83,9 +88,8 @@ class UKWTransmitterModelTest(TestCase):
     def test_station(self):
         self.assertEqual(self.station, self.ukw_transmitter.station)
 
-    def test_unicode(self):
-        self.assertEqual(
-            u'Petersberg - 95.9 MHz', unicode(self.ukw_transmitter))
+    def test_instance_to_str(self):
+        self.assertEqual('Petersberg - 95.9 MHz', str(self.ukw_transmitter))
 
 
 class StreamTransmitterModelTest(TestCase):

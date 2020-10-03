@@ -26,9 +26,9 @@ class Studio(models.Model):
 
     @property
     def location(self):
-        return "{} {}".format(self.location_latitude, self.location_longitude)
+        return (self.location_latitude, self.location_longitude)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} - {} {}".format(self.city, self.street, self.number)
 
 
@@ -55,11 +55,10 @@ class UKWTransmitter(models.Model):
 
     @property
     def location(self):
-        return "{} {}".format(self.location_latitude, self.location_longitude)
+        return (self.location_latitude, self.location_longitude)
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} - {} MHz".format(self.city, self.frequency)
-
 
 
 class StreamTransmitter(models.Model):

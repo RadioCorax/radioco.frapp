@@ -75,7 +75,8 @@ class Migration(migrations.Migration):
                     serialize=False,
                     auto_created=True,
                     primary_key=True)),
-                ('station', models.ForeignKey(to='frapp.Station')),
+                ('station', models.ForeignKey(
+                    to='frapp.Station', on_delete=models.CASCADE)),
                 ('frequency', models.DecimalField(
                     max_digits=6, decimal_places=2)),
                 ('city', models.CharField(max_length=128)),
@@ -94,16 +95,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='StreamTransmitter',
             fields=[
-                ('id', models.AutoField(
-                    verbose_name='ID',
-                    serialize=False,
-                    auto_created=True,
-                    primary_key=True)),
-                ('station', models.ForeignKey(
-                    'Station', on_delete=models.CASCADE)),
+                ('id', models.AutoField(verbose_name='ID',
+                                        serialize=False,
+                                        auto_created=True,
+                                        primary_key=True)),
+                ('station', models.ForeignKey('Station',
+                                              on_delete=models.CASCADE)),
                 ('url',  models.URLField()),
                 ('content_type', models.PositiveSmallIntegerField()),
-                ('bitrate', models.DecimalField(max_digits=3, decimal_places=0)),
+                ('bitrate', models.DecimalField(max_digits=3,
+                                                decimal_places=0)),
                 ('transmission_from', models.TimeField()),
                 ('transmission_to', models.TimeField()),
             ],

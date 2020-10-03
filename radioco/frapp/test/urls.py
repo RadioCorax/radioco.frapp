@@ -1,6 +1,5 @@
-from django.conf.urls import include, url
+from django.urls import include, path
 
 urlpatterns = [
-    url(r'^station-data/', include(
-        'radioco.frapp.urls', namespace='frapp')),
+    path('station-data/', include('radioco.frapp.urls', namespace='frapp')),
 ]

@@ -1,6 +1,12 @@
-from django.conf.urls import url
-from . import views
+from django.urls import path
+
+from radioco.frapp import views
+from radioco.frapp.config import FRAppConfig
+
+
+app_name = FRAppConfig.name
+
 
 urlpatterns = [
-    url(r'^$', views.station_data, name='index'),
+    path('', views.station_data, name='index'),
 ]

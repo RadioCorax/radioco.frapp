@@ -8,17 +8,21 @@ class StudioAdmin(admin.StackedInline):
     model = Studio
     extra = 0
 
+
 class CableTransmitterAdmin(admin.TabularInline):
     model = CableTransmitter
     extra = 1
+
 
 class UKWTransmitterAdmin(admin.StackedInline):
     model = UKWTransmitter
     extra = 0
 
+
 class StreamTransmitterAdmin(admin.TabularInline):
     model = StreamTransmitter
     extra = 1
+
 
 @admin.register(Station)
 class StationAdmin(SingletonModelAdmin):
@@ -26,4 +30,5 @@ class StationAdmin(SingletonModelAdmin):
         StudioAdmin,
         UKWTransmitterAdmin,
         CableTransmitterAdmin,
-        StreamTransmitterAdmin ]
+        StreamTransmitterAdmin
+    ]
