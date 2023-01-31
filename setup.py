@@ -4,7 +4,7 @@ import sys, os
 version = '0.3'
 
 requires = [
-    'Django==3.2',
+    'Django<3.3',
     'django-solo'
 ]
 
