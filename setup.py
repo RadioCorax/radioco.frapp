@@ -4,7 +4,7 @@ import sys, os
 version = '0.3'
 
 requires = [
-    'Django<3',
+    'Django==3.2',
     'django-solo'
 ]
 
@@ -24,8 +24,6 @@ XXX long description""",
       include_package_data=True,
       zip_safe=False,
       install_requires=requires,
-      tests_require=['django-nose'],
-      test_suite='radioco.frapp.test.runner.runtests',
       entry_points="""
       # -*- Entry points: -*-
       """,
